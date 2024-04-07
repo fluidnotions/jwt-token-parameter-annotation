@@ -19,9 +19,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
-    implementation 'org.aspectj:aspectjweaver'
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+    implementation 'com.auth0:java-jwt:3.18.2'
 }
 
 def properties = new Properties()
