@@ -5,7 +5,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.fluidnotions.jwt-token-parameter-annotation'
+group = 'com.fluidnotions'
 version = '0.0.1-SNAPSHOT'
 
 
@@ -39,7 +39,7 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
-            artifactId = rootProject.name
+            artifactId = 'jwt-token-parameter-annotation'
         }
     }
 }
