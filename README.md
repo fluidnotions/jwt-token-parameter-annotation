@@ -18,11 +18,21 @@ Example:
 @RestController
 public class MyController {
 
+    record MyClaims(String sub, String name, long iat) {}
+
     @GetMapping("/example")
     public void myRequest(@JwtTokenHeader(MyClaims.class) MyClaims claims) {
         // ...
     }
 }
 ```
+```shell
+curl --request GET \
+  --url http://localhost:8080/hello \
+  --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c' 
+```
+
+## Demo
+[Spring Boot JWT Token Decoder Demo](https://github.com/fluidnotions/demo-jwt-token-parameter-annotation) - A simple Spring Boot application demonstrating the usage of the library.
 
 
