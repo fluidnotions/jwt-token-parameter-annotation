@@ -22,15 +22,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.aspectj:aspectjweaver'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
-    compileOnly 'org.projectlombok:lombok:+'
-    annotationProcessor 'org.projectlombok:lombok:+'
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }
-
-tasks.named('compileJava') {
-    inputs.files(tasks.named('processResources'))
-}
-
 
 def properties = new Properties()
 file(project.rootDir.absolutePath + "/local.properties").withInputStream { properties.load(it) }
