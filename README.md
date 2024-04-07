@@ -17,11 +17,11 @@ Example:
 @RestController
 public class MyController {
 
-    @GetMapping("/secure")
-    public ResponseEntity<String> secureEndpoint(@JwtTokenHeader MyCustomClass jwtPayload) {
-        // Handle the decoded JWT payload object
-        return ResponseEntity.ok("Success");
+    @GetMapping("/example")
+    public void myRequest(@JwtTokenHeader(MyClaims.class) MyClaims claims) {
+        // ...
     }
 }
+```
 
 
