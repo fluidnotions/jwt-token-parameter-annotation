@@ -4,7 +4,6 @@ This library provides a custom annotation `@JwtTokenHeader` that can be used to 
 
 ## Features
 - Custom annotation `@JwtTokenHeader` for injecting decoded JWT token JSON as a specified class.
-- Aspect-oriented programming (AOP) implementation to handle decoding and conversion logic.
 - Seamless integration with Spring Boot applications.
 
 ## Usage
