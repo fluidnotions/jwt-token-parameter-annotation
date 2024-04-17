@@ -27,11 +27,16 @@ public class JwtTokenArgumentResolver implements HandlerMethodArgumentResolver {
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         String token = webRequest.getHeader("Authorization");
         log.debug("token: {}", token);
-        var tokenRaw = token.substring(7);
-        log.debug("tokenRaw: {}", tokenRaw);
-        Map<String, Object> decodedToken = decodeToken(tokenRaw);
-        Class<?> tokenClass = parameter.getParameterAnnotation(JwtTokenHeader.class).value();
-        return convertTokenToObject(decodedToken, tokenClass);
+        if(token != null){
+            var tokenRaw = token.substring(7);
+            log.debug("tokenRaw: {}", tokenRaw);
+            Map<String, Object> decodedToken = decodeToken(tokenRaw);
+            Class<?> tokenClass = parameter.getParameterAnnotation(JwtTokenHeader.class).value();
+            return convertTokenToObject(decodedToken, tokenClass);
+        }else{
+            log.warn("Token is null, direct call to endpoint without token, likely not via the gateway and using dev mode");
+        }
+       return null;
     }
 
     private Map<String, Object> decodeToken(String token) {
