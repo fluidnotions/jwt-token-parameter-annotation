@@ -12,6 +12,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class JwtTokenArgumentResolver implements HandlerMethodArgumentResolver {
@@ -24,7 +25,7 @@ public class JwtTokenArgumentResolver implements HandlerMethodArgumentResolver {
     }
 
     @Override
-    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+    public Optional<Object> resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
         String token = webRequest.getHeader("Authorization");
         log.debug("token: {}", token);
         if(token != null){
@@ -36,7 +37,7 @@ public class JwtTokenArgumentResolver implements HandlerMethodArgumentResolver {
         }else{
             log.warn("Token is null, direct call to endpoint without token, likely not via the gateway and using dev mode");
         }
-       return null;
+        return Optional.empty();
     }
 
     private Map<String, Object> decodeToken(String token) {
@@ -44,7 +45,8 @@ public class JwtTokenArgumentResolver implements HandlerMethodArgumentResolver {
         return jwt.getClaims().entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().as(Object.class)));
     }
 
-    private Object convertTokenToObject(Map<String, Object> token, Class<?> tokenClass) {
-        return new ObjectMapper().convertValue(token, tokenClass);
+    private Optional<Object> convertTokenToObject(Map<String, Object> token, Class<?> tokenClass) {
+        var clazz = new ObjectMapper().convertValue(token, tokenClass);
+        return Optional.of(clazz);
     }
 }
