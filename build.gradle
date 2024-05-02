@@ -6,11 +6,11 @@ plugins {
 }
 
 group = 'com.fluidnotions'
-version = '0.0.2'
+version = '0.0.3'
 
 
 java {
-    sourceCompatibility = '17'
+    sourceCompatibility = "21"
 }
 
 repositories {
