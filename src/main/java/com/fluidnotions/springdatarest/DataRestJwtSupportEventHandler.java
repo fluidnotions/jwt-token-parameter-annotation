@@ -14,33 +14,17 @@ import java.util.Map;
 
 @RepositoryEventHandler
 public class DataRestJwtSupportEventHandler {
-    private JwtSupportDataRestProperties authDataRestProperties;
-
-    public DataRestJwtSupportEventHandler(JwtSupportDataRestProperties authDataRestProperties) {
-        this.authDataRestProperties = authDataRestProperties;
-    }
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @HandleBeforeSave
     public void handleBeforeSave(Object entity) {
-        log.info("Setting tokenPayloadField(s) before saving spring-data-REST entity: {}", entity.getClass().getSimpleName());
+        log.info("Setting tokenPayloadField lastmodifiedby before saving spring-data-REST entity: {}", entity.getClass().getSimpleName());
         try {
             String token = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest().getHeader("Authorization");
             log.info("token: {}", token);
             Map<String, Object> userProfile = (Map<String, Object>) JwtTokenHelper.decodeJwtToken(token);
-            var mapping = authDataRestProperties.getMapping();
-            for (Map.Entry<String, String> entry : mapping.entrySet()) {
-                String tokenPayloadField = entry.getKey();
-                String[] entityPropertyParts = entry.getValue().split(",");
-                String entityPropertyName = entityPropertyParts[0];
-                if (entityPropertyParts.length > 1 && entityPropertyParts[1].equals("number")) {
-                    setEntityInstancePropertyNumber(entity, tokenPayloadField, entityPropertyName, userProfile);
-                }
-                else {
-                    setEntityInstanceProperty(entity, userProfile.get(tokenPayloadField), entityPropertyName);
-                }
-            }
+            setEntityInstancePropertyNumber(entity, "id", "lastmodifiedby", userProfile);
         } catch (Exception e) {
             log.error("Error: {}", e.getMessage());
         }
