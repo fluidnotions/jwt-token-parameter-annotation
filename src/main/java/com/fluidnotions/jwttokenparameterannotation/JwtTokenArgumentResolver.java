@@ -1,5 +1,6 @@
-package com.fluidnotions.jwttokensupport;
+package com.fluidnotions.jwttokenparameterannotation;
 
+import com.fluidnotions.jwtsupport.JwtTokenHelper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;

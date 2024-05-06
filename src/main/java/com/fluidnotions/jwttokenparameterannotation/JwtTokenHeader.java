@@ -1,4 +1,4 @@
-package com.fluidnotions.jwttokensupport;
+package com.fluidnotions.jwttokenparameterannotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
