@@ -1,4 +1,4 @@
-package com.fluidnotions.jwttokenparameterannotation;
+package com.fluidnotions.jwttokensupport;
 
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Configuration;
