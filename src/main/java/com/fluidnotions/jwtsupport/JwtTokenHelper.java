@@ -2,6 +2,7 @@ package com.fluidnotions.jwtsupport;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,12 @@ import java.util.stream.Collectors;
 public class JwtTokenHelper {
 
     private final static Logger log = LoggerFactory.getLogger("JwtTokenHelper");
+    private static ObjectMapper objectMapper;
+
+    static{
+        objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
 
     public static Object decodeJwtToken(String token){
         return decodeJwtToken(token, null);
@@ -42,7 +49,7 @@ public class JwtTokenHelper {
     }
 
     private static Object convertTokenToObject(Map<String, Object> token, Class<?> tokenClass) {
-        return new ObjectMapper().convertValue(token, tokenClass);
+        return objectMapper.convertValue(token, tokenClass);
     }
 
     private static Object getEmptyClassInstance(Class<?> tokenClass) {

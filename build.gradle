@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.fluidnotions'
-version = '0.0.4-SNAPSHOT1'
+version = '0.0.5'
 
 
 java {
