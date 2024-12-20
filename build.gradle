@@ -5,7 +5,7 @@ plugins {
     id 'maven-publish'
 }
 
-group = 'com.fluidnotions'
+group = 'com.cybicom'
 version = '0.0.6'
 
 
@@ -23,8 +23,7 @@ dependencies {
     implementation 'com.auth0:java-jwt:3.18.2'
 }
 
-def properties = new Properties()
-file(project.rootDir.absolutePath + "/local.properties").withInputStream { properties.load(it) }
+
 
 publishing {
     repositories {
@@ -32,8 +31,7 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/fluidnotions/jwt-token-parameter-annotation")
             credentials {
-                username = properties.getProperty('github.username')
-                password = properties.getProperty('github.token')
+
             }
         }
     }

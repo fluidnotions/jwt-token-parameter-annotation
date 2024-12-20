@@ -1,7 +1,7 @@
-package com.fluidnotions.jwtsupport;
+package com.cybicom.jwtsupport;
 
-import com.fluidnotions.jwttokenparameterannotation.JwtTokenArgumentResolver;
-import com.fluidnotions.springdatarest.DataRestJwtSupportEventHandler;
+import com.cybicom.jwttokenparameterannotation.JwtTokenArgumentResolver;
+import com.cybicom.springdatarest.DataRestJwtSupportEventHandler;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;

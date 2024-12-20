@@ -1,6 +1,6 @@
-package com.fluidnotions.springdatarest;
+package com.cybicom.springdatarest;
 
-import com.fluidnotions.jwtsupport.JwtTokenHelper;
+import com.cybicom.jwtsupport.JwtTokenHelper;
 import org.springframework.data.rest.core.annotation.HandleBeforeSave;
 import org.springframework.data.rest.core.annotation.RepositoryEventHandler;
 import org.slf4j.Logger;

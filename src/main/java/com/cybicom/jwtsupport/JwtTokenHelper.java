@@ -1,4 +1,4 @@
-package com.fluidnotions.jwtsupport;
+package com.cybicom.jwtsupport;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
